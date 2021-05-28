@@ -1,11 +1,13 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 
 
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.myapplication.databinding.ActivitySignupBinding
 
 import com.google.firebase.auth.FirebaseAuth
@@ -16,22 +18,34 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
 
 
-    lateinit var firebaseAuth: FirebaseAuth    //created fairbase object for authentication
+    private lateinit var firebaseAuth: FirebaseAuth    //created fairbase object for authentication
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        setContentView(R.layout.activity_signup)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_signup)
+
+
+
         firebaseAuth = FirebaseAuth.getInstance()   // Initialise firebaseAuth
 
         //adding button
         binding.stbutton.setOnClickListener{
             signupUser()
+            finish()
         }
+
+        binding.stLogin.setOnClickListener{
+            val intenet  = Intent(this,LoginActivity::class.java)
+            startActivity(intenet)
+        }
+
+
+
     }
+
+
+
 
     private fun signupUser(){
         val email = binding.stEmailAddress.text.toString()
@@ -54,6 +68,9 @@ class SignupActivity : AppCompatActivity() {
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
                     Toast.makeText(this,"Login Sucessful",Toast.LENGTH_SHORT).show()
+                    val intenet  = Intent(this,MainActivity::class.java)
+                    startActivity(intenet)
+                    finish()
                 }
                 else{
                     Toast.makeText(this,"Error in creating user.",Toast.LENGTH_SHORT).show()
