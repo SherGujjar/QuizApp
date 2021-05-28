@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.os.Bundle
 
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySignupBinding
 
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +24,7 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_signup)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
 
 
 
@@ -36,7 +37,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         binding.stLogin.setOnClickListener{
-            val intenet  = Intent(this,LoginActivity::class.java)
+            val intenet  = Intent(this, LoginActivity::class.java)
             startActivity(intenet)
         }
 
@@ -68,7 +69,7 @@ class SignupActivity : AppCompatActivity() {
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
                     Toast.makeText(this,"Login Sucessful",Toast.LENGTH_SHORT).show()
-                    val intenet  = Intent(this,MainActivity::class.java)
+                    val intenet  = Intent(this, MainActivity::class.java)
                     startActivity(intenet)
                     finish()
                 }

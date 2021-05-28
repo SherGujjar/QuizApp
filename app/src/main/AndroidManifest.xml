@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,29 +10,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-        <activity android:name=".LoginActivity">
-
-        </activity>
-        <activity android:name=".SignupActivity">
-
-        </activity>
-
-
-
+        android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.ResultActivity" />
         <activity
-            android:name=".LoginIntro"
+            android:name=".activities.QuestionActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.SignupActivity" />
+        <activity
+            android:name=".activities.LoginIntro"
             android:label="@string/title_activity_log_in_intro"
-            android:theme="@style/Theme.MyApplication.NoActionBar" >
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".MainActivity">
-
         </activity>
     </application>
 
