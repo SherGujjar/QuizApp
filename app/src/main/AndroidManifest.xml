@@ -20,14 +20,17 @@
         <activity android:name=".activities.SignupActivity" />
         <activity
             android:name=".activities.LoginIntro"
-            android:label="@string/title_activity_log_in_intro"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
-        <activity android:name=".activities.MainActivity">
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.MainActivity">
+
         </activity>
     </application>
 
