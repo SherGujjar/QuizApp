@@ -90,6 +90,12 @@ class MainActivity : AppCompatActivity() {
             R.string.app_name
         )
         actionBarDrawerToggle.syncState()
+        binding.navigationView.setNavigationItemSelectedListener {
+            val intent = Intent(this,ProfileActivity::class.java)
+            startActivity(intent)
+            binding.mainDrawer.closeDrawers()
+            true
+        }
     }
 
     private fun setupFireStore() {

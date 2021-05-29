@@ -34,7 +34,7 @@ class QuizAdapter(val context: Context, val quizzes:List<Quiz>):
             Toast.makeText(context,quizzes[position].title,Toast.LENGTH_SHORT).show()
             val intent = Intent(context,QuestionActivity::class.java)
             intent.putExtra("DATE",quizzes[position].title)
-            context.startActivities(arrayOf(intent))
+            context.startActivity(intent)
         }
     }
 

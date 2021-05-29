@@ -47,6 +47,7 @@ class QuestionActivity : AppCompatActivity() {
             val intent = Intent(this,ResultActivity::class.java)
             val json:String = Gson().toJson(quizzes!![0])   //serial objects with the help of gson
             intent.putExtra("QUIZ",json)
+            Log.d("FINALQUIZ", questions.toString())
             startActivity(intent)
 
         }
@@ -57,7 +58,9 @@ class QuestionActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         val date = intent.getStringExtra("DATE")
         if (date != null) {
-            firestore.collection("Quizzes").whereEqualTo("title", date).get()
+            Log.d("Date",date)
+            firestore.collection("Quizzes").whereEqualTo("title", date)
+                .get()
                 .addOnSuccessListener {
                     if (it != null && !it.isEmpty) {
                         quizzes = it.toObjects(Quiz::class.java)

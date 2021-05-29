@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityResultBinding
@@ -11,7 +12,7 @@ import com.example.myapplication.models.Quiz
 import com.google.gson.Gson
 
 class ResultActivity : AppCompatActivity() {
-    private lateinit var quiz:Quiz
+    private lateinit var quiz: Quiz
     private lateinit var binding : ActivityResultBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,8 @@ class ResultActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         val quizData = intent.getStringExtra("QUIZ")
-        val quiz = Gson().fromJson<Quiz>(quizData, Quiz::class.java)   //Deserial with the help of gson
+
+        quiz = Gson().fromJson<Quiz>(quizData, Quiz::class.java)   //Deserial with the help of gson
         calculateScore()
         setAnswerView()
     }
@@ -34,8 +36,9 @@ class ResultActivity : AppCompatActivity() {
         for(entry in quiz.questions.entries){
             val question = entry.value
             builder.append("<font color'#18206F'><b>Question: ${question.description}</b></font><br/><br/>")
-            builder.append{"<font color'#009688'><b>Answer: ${question.answer}</b></font><br/><br/>"}
+            builder.append("<font color'#009688'>Answer: ${question.answer}</font><br/><br/>")
         }
+
         if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.N){
             binding.txtAnswer.text = Html.fromHtml(builder.toString(),Html.FROM_HTML_MODE_COMPACT);
         }
@@ -52,6 +55,7 @@ class ResultActivity : AppCompatActivity() {
                 score+=10
             }
         }
+        Log.d("Score","$score")
         binding.txtScore.text = "Your Score: $score"
     }
 }
