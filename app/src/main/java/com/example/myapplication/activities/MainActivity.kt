@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             datePicker.show(supportFragmentManager,"DatePicker")
             datePicker.addOnPositiveButtonClickListener {
                 Log.d("DATEPICKER",datePicker.headerText)
-                val dateFormatter = SimpleDateFormat("dd-mm-yyyy")
+                val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
                 val date = dateFormatter.format(Date(it))
                 val intent = Intent(this,QuestionActivity::class.java)
                 intent.putExtra("DATE",date)
